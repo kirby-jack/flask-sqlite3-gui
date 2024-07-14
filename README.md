@@ -13,7 +13,7 @@ Instructions for running the project locally:
 
 ## Usage
 
-![Screenshot of interface](/sqlite3-gui-screenshot.png).
+![Screenshot of interface](/sqlite3-gui-screenshot.png)
 
 **Features include:**
 1. Real time data validation. The user will not be able to submit a new record unless values are correctly entered.
