@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <title>Database</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Database</h1>
+        </div>
+        <h3 style="text-align: center; color: rgb(0, 0, 0);">This GUI allows you to edit an sqlite3 database</h2>
+        <div class="container">
+            <div name="add_new_user" class="section">                
+                <!------------------------------------------------------------>
+                <!--                      ADD A NEW USER                    -->
+                <!------------------------------------------------------------>
+                <h2>Create a record</h2>
+                <form action="/create_new_record" method="POST" name="add_new_user" class="form_flex" onsubmit="return false">
+                    <!-- name -->
+                    <div>
+                        <div name="add_new_user_name_error" class="error">Invalid name</div>
+                        <input autocomplete="off" name="name" placeholder="Full Name" type="text">
+                        <div name="add_new_user_name_error" class="error">Please only use Alphabet, Spaces and Hyphens "-"</div>
+                    </div>
+                    <!-- day -->
+                    <div>
+                        <div name="add_new_user_day_error" class="error">Invalid day</div>
+                        <select name="day">
+                            <option selected style="color: pink" value="">Choose a day</option>
+                            {% for day in DAYS %}
+                            <option value='{{ day }}'>{{ day }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- month -->
+                    <div>
+                        <div name="add_new_user_month_error" class="error">Invalid month</div>
+                        <select name="month">
+                            <option selected style="color: pink" value="">Choose a month</option>
+                            {% for month in MONTHS %}
+                            <option value='{{ MONTHS[month] }}'>{{ MONTHS[month] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- year -->
+                    <div>
+                        <div name="add_new_user_year_error" class="error">Invalid year</div>
+                        <select name="year">
+                            <option selected style="color: pink" value="">Choose a year </option>
+                            {% for year in YEARS %}
+                                <option value='{{ year }}'>{{ year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- submit -->
+                     <div>
+                        <div class="error"></div>
+                        <button class="submit" onclick="validate(document.querySelector('form[name=add_new_user]')); return false">Submit</button>
+                    </div>
+                </form>
+            </div>
+            
+        <!------------------------------------------------------------>
+        <!--     DIRECTORY TABLE - EDIT, SAVE, & DELETE A RECORD     -->
+        <!------------------------------------------------------------>
+        <div name="directory" class="section">    
+            <!-- table headers -->
+            <h2>Directory</h2>
+            <div name="data">
+                <table>
+                    <!-- column headers -->
+                    <thead>
+                        <tr>
+                            <th scope="col">Name
+                                <!-- TOOLTIP ICON --> 
+                                <div class="tooltip">
+                                    <img src="{{ url_for('static', filename='images/image_question.png') }}" class="image_question"> <!-- image taken from "https://www.flaticon.com/free-icons/question" -->
+                                    <span class="tooltiptext">Click on the name to edit the text</span>
+                                </div>
+                            </th>
+                            <th scope="col">Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in directory %} 
+                        <tr id='{{ row["id"] }}'>
+                            
+                            <!-- NAME COLUMN -->
+                            <td name="NameCol" class="name_column" contenteditable="plaintext-only" value='{{ row["id"] }}'>{{ row["name"] }}</td>
+                            
+                            <!-- BIRTHDAY COLUMN -->
+                                <td name="BirthdayCol" id='{{ row["id"] }}'>
+                                   
+                                    <!-- change day box -->
+                                    <select name='day-update{{ row["id"] }}'>
+                                        <option selected style="color: pink">{{ row["day"] }}</option>
+                                        {% for day in DAYS %}
+                                        <option value='{{ day }}'>{{ day }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <!-- change month box -->
+                                    <select name='month-update{{  row["id"] }}'>
+                                        <option selected style="color: pink">{{ row["month"] }}</option>
+                                        {% for month in MONTHS %}
+                                        <option value='{{ MONTHS[month] }}'>{{ MONTHS[month] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    
+                                    <!-- change year box -->
+                                    <select >
+                                        <option selected style="color: pink">{{ row["year"] }}</option>
+                                        {% for year in YEARS %}
+                                        <option value='{{ year }}'>{{ year }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                    
+                            <!-- DELETE COLUMN -->
+                            <td name="DeleteCol" style="width: 10%;">
+                                <form action="/delete" method="post">
+                                    <button name="id" class="delete" type="submit" value='{{ row["id"] }}'>X</button>
+                                </form>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    <!-- save changes button -->
+                    <button onclick="saveChanges()">Save Changes</button>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        </div>
+        <!-- note this works because we have a static folder, it will not work in other named folders -->
+        {% block script %}{% endblock %}
+        <script src="static/validate.js"></script>
+        <script src="static/edit.js"></script>
+    </body>
+    </html>

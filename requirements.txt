@@ -1,0 +1,3 @@
+# created with pipreqs
+Flask==3.0.0
+numpy==1.25.0
