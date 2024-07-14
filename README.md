@@ -16,8 +16,8 @@ Instructions for running the project locally:
 ![Screenshot of interface](/sqlite3-gui-screenshot.png)
 
 **Features include:**
-1. Real time data validation. The user will not be able to submit a new record unless values are correctly entered.
-2. Updating an existing record's "Name" and "Birthday" values, then use the "Save Changes" button to commit changes to the database. 
+1. Real time data validation, as shown by the red text. This red text will appear if the user tries to submit a new record with invalid values, including the omission of a day, month, or year value.
+2. Ability to update an existing record's "Name" and "Birthday" value, then subsequently using the "Save Changes" button to commit changes to the SQLite3 database. 
 3. Delete existing records by clicking the "X" button. 
 
 You may re-create the database by using the query found in `data_create.sql`.
