@@ -3,7 +3,8 @@
 ## Installation instructions
 Instructions for running the project locally: 
 
-1. Instal dependencies using `pip install -r requirements.txt`
+1. Clone repo with `git clone`
+2. Instal dependencies using `pip install -r requirements.txt`
 
     Please note: if you get a `ModuleNotFoundError: No module named 'flask'` error, try using `pip3 install -r requirements.txt`
 
