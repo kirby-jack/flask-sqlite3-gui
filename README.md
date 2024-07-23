@@ -5,7 +5,7 @@ A live version is being hosted on PythonAnywhere, click the below link to access
 
 [https://jackkirby.pythonanywhere.com/](https://jackkirby.pythonanywhere.com/)
 
-## Installation instructions
+## Local Installation instructions
 Instructions for running the project locally: 
 
 1. Clone repo with `git clone`
