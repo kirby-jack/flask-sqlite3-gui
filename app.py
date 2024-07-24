@@ -88,8 +88,11 @@ def create_new_record():
         year = int(request.form.get("year"))
             
         # get last id value in the db & +1 to create a unique value
-        id = cur.execute("SELECT id FROM directory ORDER BY id DESC LIMIT 1").fetchone()
-        id = id[0]+1
+        try:
+            id = cur.execute("SELECT id FROM directory ORDER BY id DESC LIMIT 1").fetchone()
+            id = id[0]+1
+        except TypeError: 
+            id = 0
         
         cur.execute(
             """
