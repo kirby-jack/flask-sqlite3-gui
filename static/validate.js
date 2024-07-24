@@ -32,16 +32,15 @@ function validate(form) {
     // validate name - regex allows case-insensitive (/i), alphabet, spaces, and hyphens
     const regex_validate_name = /^([(a-z)(\-)\s]+)$/i;
     if ((!regex_validate_name.test(name)) && (name.toString().length < 255)) {
-        for (var i = 0; i < name_error.length; i++) {
-            name_error[i].style.visibility = 'visible';
-        }
+        name_error.forEach(element => element.style.visibility = 'visible')
+        
         input_name.addEventListener("input", () => {
-            name_error.style.visibility = "hidden"
-        })
+            name_error.forEach(element => element.style.visibility = 'hidden')
+        });
     }
     else {
         validation_matrix["name_valid"] = true
-    }
+    };
 
     // validate day - (html default value is empty string " ")
     if (!day) {
