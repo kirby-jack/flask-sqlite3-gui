@@ -249,3 +249,46 @@ tbody tr:nth-of-type(odd) {
     }
 }
 
+/********************************************************************/
+/*                      DIMENSIONS UNDER 496px                      */
+/********************************************************************/
+
+@media only screen and (max-width:496px) {
+
+    div[name="add_new_user_name_error"] {
+        left: -5%;
+        position: relative;
+        top: 1%;
+        width: 100%;
+    }
+
+    .error {
+        width: 100%;
+        padding-top: 10px;
+    }
+
+    form[name="add_new_user"] > div:nth-child(1) > div[name="add_new_user_name_error"].error:nth-child(3) {
+        width: 100%;
+        left: 0%;
+        margin-bottom: 37px;
+    }
+
+    .form_flex div input {
+        width: 100%;
+        height: 35%;
+        right: 0%;
+        position: relative;
+    }
+
+    .form_flex {
+        /* position: absolute; */
+        display: inline-grid;
+    }
+
+    .submit {
+        position: relative;
+        top: 7%;
+
+    }
+
+}
