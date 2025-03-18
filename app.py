@@ -90,7 +90,7 @@ def create_new_record():
         # get last id value in the db & +1 to create a unique value
         try:
             id = cur.execute("SELECT id FROM directory ORDER BY id DESC LIMIT 1").fetchone()
-            id = id[0]+1
+            id = id['id']+1
         except TypeError: 
             id = 0
         
