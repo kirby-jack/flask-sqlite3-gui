@@ -104,9 +104,5 @@ def create_new_record():
         con.commit()
         return redirect("/")
 
-
-# uncommment for debugging mode
-# if __name__ == "__main__":
-#     app.run(debug=True)
-
-app.run()
+if __name__ == "__main__":
+    app.run(debug=True)
